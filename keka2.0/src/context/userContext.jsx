@@ -17,6 +17,7 @@ function userContext({ children }) {
   recognition.onResult((e)=>{
 console.log(e);
 
+
   })
     let value = {
 
