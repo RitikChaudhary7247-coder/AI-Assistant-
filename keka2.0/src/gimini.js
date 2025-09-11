@@ -31,4 +31,4 @@ history: [
     return result.response.text()
 }
 
-export default run
+export default run;
