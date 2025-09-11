@@ -23,12 +23,12 @@ const generationConfig = {
 async function run(prompt) {
     const chatSession =  model.startChat({
 generationConfig,
-history:[
+history: [
     ],
 });
 
-const result = await chatSession.sendMessage(prompt);
-console.log(result.response.text());
+    const result = await chatSession.sendMessage(prompt);
+    return result.response.text()
 }
 
-export default  run();
+export default run
