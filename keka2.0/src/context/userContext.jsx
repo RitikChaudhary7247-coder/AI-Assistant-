@@ -1,8 +1,10 @@
-import React, { createContext } from "react"
+import React, { createContext, useState } from "react"
 import run from '../gimini';
 export const datacontext = createContext();
 
 function UserContext({ children }) {
+let[speaking,setSpeaking]=useState(false)
+
   function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);
     text_speak.volume = 1;
@@ -14,7 +16,7 @@ function UserContext({ children }) {
 
   async function aiResponse(prompt) {
     let text = await run(prompt)
-    console.log(text)
+    // console.log(text)
     speak(text)
   }
 
@@ -31,9 +33,9 @@ function UserContext({ children }) {
   };
 
   let value = {
-    recognition
-    // speak,
-    // aiResponse,
+    recognition,
+    speaking,
+    setSpeaking,
   };
 
   return (
