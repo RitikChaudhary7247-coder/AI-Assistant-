@@ -1,9 +1,9 @@
-let apiKey="AIzaSyByAfrqurRGeyRx9qgCEJokBnUtjKwSu1I"
+let apikey="AIzaSyByAfrqurRGeyRx9qgCEJokBnUtjKwSu1I"
 
 import {
     GoogleGenerativeAI,
     HarmCategory,
-    harmBlockThreshold,
+    HarmBlockThreshold,
 } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(apikey);
@@ -16,7 +16,7 @@ const generationConfig = {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192,
+    maxOutputTokens:20,
     responseMimeType: "text/plain",
 };
 

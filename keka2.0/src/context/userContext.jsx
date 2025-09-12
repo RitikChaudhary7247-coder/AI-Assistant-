@@ -1,51 +1,48 @@
-import React, { createContext, useEffect, useRef } from 'react'
-// import run from '../gimini.js';
+import React, { createContext } from "react"
+import run from '../gimini';
+export const datacontext = createContext();
 
-export const datacontext = createContext()
-
-function userContext({ children }) {
+function UserContext({ children }) {
   function speak(text) {
-    let text_speak = new SpeechSynthesisUtterance(text)
+    let text_speak = new SpeechSynthesisUtterance(text);
     text_speak.volume = 1;
     text_speak.rate = 1;
     text_speak.pitch = 1;
-    text_speak.lang = "en-GB" // or "hi-IN" for Hindi
-    window.speechSynthesis.speak(text_speak)
+    text_speak.lang = "hi-GB"; 
+    window.speechSynthesis.speak(text_speak);
   }
 
   async function aiResponse(prompt) {
     let text = await run(prompt)
-    return text;
+    console.log(text)
+    speak(text)
   }
 
-  const recognitionRef = useRef(null);
+  let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  useEffect(() => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+  let recognition = new SpeechRecognition();
 
-    const recognition = new SpeechRecognition();
-    recognition.onresult = (e) => {
-      let currentIndex = e.resultIndex
-      let transcript = e.results[currentIndex][0].transcript
+  recognition.onresult = (e) => {
+    let currentIndex = e.resultIndex;
+    let transcript = e.results[currentIndex][0].transcript;
 
-      console.log(transcript);
-      aiResponse(transcript)
-    }
-    recognitionRef.current = recognition;
-  }, []);
+    console.log("Heard:", transcript);
+    aiResponse(transcript);
+  };
 
   let value = {
-    recognition: recognitionRef.current,
-    speak,
-    aiResponse
-  }
+    recognition
+    // speak,
+    // aiResponse,
+  };
 
   return (
+    <div>
     <datacontext.Provider value={value}>
       {children}
     </datacontext.Provider>
-  )
+    </div>
+  );
 }
 
-export default userContext
+export default UserContext;
