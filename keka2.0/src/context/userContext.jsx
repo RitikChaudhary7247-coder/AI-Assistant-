@@ -4,6 +4,8 @@ export const datacontext = createContext();
 
 function UserContext({ children }) {
 let[speaking,setSpeaking]=useState(false)
+let [prompt,setPrompt]=useState("listening...")
+let [response,setResponse]=useState(false)
 
   function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);
@@ -16,8 +18,16 @@ let[speaking,setSpeaking]=useState(false)
 
   async function aiResponse(prompt) {
     let text = await run(prompt)
+    let newText=text.split("**")&&text.split("*")&&text.replace ("google","Hrithik Chaudhary")&&text.replace("Google","Hrithik Chaudhary") 
+    setPrompt(newText)
     // console.log(text)
-    speak(text)
+    speak(newText)
+    setResponse(true)
+    setTimeout(()=>{
+    setSpeaking(false)
+    },6000)
+    // setSpeaking(false)
+
   }
 
   let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -27,8 +37,8 @@ let[speaking,setSpeaking]=useState(false)
   recognition.onresult = (e) => {
     let currentIndex = e.resultIndex;
     let transcript = e.results[currentIndex][0].transcript;
-
-    console.log("Heard:", transcript);
+    setPrompt(transcript)
+    // console.log("Heard:", transcript);
     aiResponse(transcript);
   };
 
@@ -36,6 +46,9 @@ let[speaking,setSpeaking]=useState(false)
     recognition,
     speaking,
     setSpeaking,
+    prompt,
+    setPrompt,
+    response
   };
 
   return (

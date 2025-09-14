@@ -37,3 +37,22 @@ button{
 #speak{
   width: 100px;
 }
+
+p{
+  font-size: 1.5vmax;
+  color: white;
+}
+
+.response{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#aigif{
+  width: 50vh;
+  height: 80px;
+}
+

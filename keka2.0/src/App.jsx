@@ -3,33 +3,39 @@ import "./App.css";
 import va from "./assets/ai.png";
 import { FaMicrophoneAlt } from "react-icons/fa";
 import { datacontext } from './context/userContext';
-import speakimg from '../src/assets/speak.gif'
-
+import speakimg from './assets/speak.gif';
+import aivo from './assets/aiVoice.gif';
 
 function App() {
-  let { recognition, speaking, setSpeaking } = useContext(datacontext)
-
+  const { recognition, speaking, setSpeaking, prompt, response, setPrompt } = useContext(datacontext);
 
   return (
-    <div className='main'>3
-      <img src={va} alt="" id="keka" />
+    <div className="main">
+      <img src={va} alt="AI Logo" id="keka" />
       <span>I'm Keka2.0, Your Advanced Virtual Assistant</span>
-      {!speaking ?
-        <button onClick={() => {
-          setSpeaking(true)
-          recognition.start()
-        }}>Click here <FaMicrophoneAlt /></button>
-        :
-        <div>
-          
-      <img src={speakimg} alt="lisining logo" id="speak" />
-      <p>listening</p>
-        </div>
 
-      }
-
+      {!speaking ? (
+        <button
+          onClick={() => {
+            setPrompt("listening...");
+            setSpeaking(true);
+            recognition.start();
+          }}
+        >
+          Click here <FaMicrophoneAlt />
+        </button>
+      ) : (
+        <div className="response">
+          {!response ? (
+            <img src={speakimg} alt="listening logo" id="speak" />
+          ) : (
+            <img src={aivo} alt="AI speaking logo" id="aigif" />
+          )}
+          <p>{prompt}</p>
         </div>
-  )
+      )}
+    </div>
+  );
 }
 
-      export default App
+export default App;
