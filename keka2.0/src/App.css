@@ -21,13 +21,13 @@ span{
   color: transparent;
 }
 button{
-  width: 180px;
-  height: 40px;
+  width: 15vw;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  font-size: 20px;
+  font-size: 2vmin;
   border-radius: 20px;
   border: none;
   background-color: rgb(79, 224, 234);
@@ -41,6 +41,8 @@ button{
 p{
   font-size: 1.5vmax;
   color: white;
+  text-align: center;
+  padding: 0px 40px ;
 }
 
 .response{

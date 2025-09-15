@@ -7,7 +7,7 @@ import speakimg from './assets/speak.gif';
 import aivo from './assets/aiVoice.gif';
 
 function App() {
-  const { recognition, speaking, setSpeaking, prompt, response, setPrompt } = useContext(datacontext);
+  const { recognition, speaking, setSpeaking, prompt, response, setPrompt, setResponse } = useContext(datacontext);
 
   return (
     <div className="main">
@@ -19,6 +19,7 @@ function App() {
           onClick={() => {
             setPrompt("listening...");
             setSpeaking(true);
+            setResponse(false)
             recognition.start();
           }}
         >

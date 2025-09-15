@@ -1,5 +1,6 @@
 let apikey="AIzaSyByAfrqurRGeyRx9qgCEJokBnUtjKwSu1I"
 
+
 import {
     GoogleGenerativeAI,
     HarmCategory,
@@ -16,7 +17,7 @@ const generationConfig = {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens:20,
+    maxOutputTokens:17,
     responseMimeType: "text/plain",
 };
 
