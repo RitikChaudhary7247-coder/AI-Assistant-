@@ -127,10 +127,8 @@ function UserContext({ children }) {
         },6000)
       }
     
-      
-
     else {
-      apiResponse(command);
+      aiResponse(command);
     }
   }
 
